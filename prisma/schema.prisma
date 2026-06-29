@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Perfil {
+  id       Int       @id @default(autoincrement())
+  nombre   String    @db.VarChar(50)
+  usuarios Usuario[]
+}
+
+model Usuario {
+  id        Int        @id @default(autoincrement())
+  rut       String     @unique @db.VarChar(12)
+  email     String     @unique @db.VarChar(150)
+  password  String     @db.VarChar(255)
+  perfilId  Int
+  perfil    Perfil     @relation(fields: [perfilId], references: [id])
+  arriendos Arriendo[]
+}
+
+model TipoVehiculo {
+  id          Int        @id @default(autoincrement())
+  nombre      String     @db.VarChar(50)
+  valorDiario Int
+  vehiculos   Vehiculo[]
+}
+
+model Vehiculo {
+  id        Int          @id @default(autoincrement())
+  patente   String       @unique @db.VarChar(10)
+  estado    String       @db.VarChar(20)
+  fotoUrl   String       @db.VarChar(255)
+  tipoId    Int
+  tipo      TipoVehiculo @relation(fields: [tipoId], references: [id])
+  arriendos Arriendo[]
+}
+
+model Arriendo {
+  id             Int       @id @default(autoincrement())
+  fechaInicio    DateTime
+  fechaTermino   DateTime
+  fechaEntrega   DateTime?
+  fechaRecepcion DateTime?
+  fotosEntrega   String?   @db.Text
+  fotosRecepcion String?   @db.Text
+  clienteRut     String    @db.VarChar(12)
+  clienteNombre  String    @db.VarChar(100)
+  vehiculoId     Int
+  usuarioId      Int
+  vehiculo       Vehiculo  @relation(fields: [vehiculoId], references: [id])
+  usuario        Usuario   @relation(fields: [usuarioId], references: [id])
+}
