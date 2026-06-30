@@ -7,16 +7,14 @@ export default defineEventHandler(async (event) => {
         throw createError({ statusCode: 403, message: "Funcionalidad exclusiva de administrador" });
     }
 
-    const usuarios = await prisma.usuario.findMany({
-        select: {
-            id: true,
-            nombre: true,
-            email: true,
-            perfil: {
-                select: { nombre: true }
-            }
-        }
-    });
+  const id = Number(event.context.params?.id);
+  
+  const userId = (session.user as { id?: number }).id;
+  if (userId && id === userId) {
+    throw createError({ statusCode: 400, message: "No puedes eliminar tu propia cuenta" });
+  }
 
-    return usuarios;
+  await prisma.usuario.delete({ where: { id } });
+
+  return { ok: true, message: "Usuario eliminado" };
 });
