@@ -4266,17 +4266,22 @@ export namespace Prisma {
 
   export type VehiculoAvgAggregateOutputType = {
     id: number | null
+    anio: number | null
     tipoId: number | null
   }
 
   export type VehiculoSumAggregateOutputType = {
     id: number | null
+    anio: number | null
     tipoId: number | null
   }
 
   export type VehiculoMinAggregateOutputType = {
     id: number | null
     patente: string | null
+    marca: string | null
+    modelo: string | null
+    anio: number | null
     estado: string | null
     fotoUrl: string | null
     tipoId: number | null
@@ -4285,6 +4290,9 @@ export namespace Prisma {
   export type VehiculoMaxAggregateOutputType = {
     id: number | null
     patente: string | null
+    marca: string | null
+    modelo: string | null
+    anio: number | null
     estado: string | null
     fotoUrl: string | null
     tipoId: number | null
@@ -4293,6 +4301,9 @@ export namespace Prisma {
   export type VehiculoCountAggregateOutputType = {
     id: number
     patente: number
+    marca: number
+    modelo: number
+    anio: number
     estado: number
     fotoUrl: number
     tipoId: number
@@ -4302,17 +4313,22 @@ export namespace Prisma {
 
   export type VehiculoAvgAggregateInputType = {
     id?: true
+    anio?: true
     tipoId?: true
   }
 
   export type VehiculoSumAggregateInputType = {
     id?: true
+    anio?: true
     tipoId?: true
   }
 
   export type VehiculoMinAggregateInputType = {
     id?: true
     patente?: true
+    marca?: true
+    modelo?: true
+    anio?: true
     estado?: true
     fotoUrl?: true
     tipoId?: true
@@ -4321,6 +4337,9 @@ export namespace Prisma {
   export type VehiculoMaxAggregateInputType = {
     id?: true
     patente?: true
+    marca?: true
+    modelo?: true
+    anio?: true
     estado?: true
     fotoUrl?: true
     tipoId?: true
@@ -4329,6 +4348,9 @@ export namespace Prisma {
   export type VehiculoCountAggregateInputType = {
     id?: true
     patente?: true
+    marca?: true
+    modelo?: true
+    anio?: true
     estado?: true
     fotoUrl?: true
     tipoId?: true
@@ -4424,6 +4446,9 @@ export namespace Prisma {
   export type VehiculoGroupByOutputType = {
     id: number
     patente: string
+    marca: string
+    modelo: string
+    anio: number
     estado: string
     fotoUrl: string
     tipoId: number
@@ -4451,6 +4476,9 @@ export namespace Prisma {
   export type VehiculoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     patente?: boolean
+    marca?: boolean
+    modelo?: boolean
+    anio?: boolean
     estado?: boolean
     fotoUrl?: boolean
     tipoId?: boolean
@@ -4464,12 +4492,15 @@ export namespace Prisma {
   export type VehiculoSelectScalar = {
     id?: boolean
     patente?: boolean
+    marca?: boolean
+    modelo?: boolean
+    anio?: boolean
     estado?: boolean
     fotoUrl?: boolean
     tipoId?: boolean
   }
 
-  export type VehiculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "patente" | "estado" | "fotoUrl" | "tipoId", ExtArgs["result"]["vehiculo"]>
+  export type VehiculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "patente" | "marca" | "modelo" | "anio" | "estado" | "fotoUrl" | "tipoId", ExtArgs["result"]["vehiculo"]>
   export type VehiculoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tipo?: boolean | TipoVehiculoDefaultArgs<ExtArgs>
     arriendos?: boolean | Vehiculo$arriendosArgs<ExtArgs>
@@ -4485,6 +4516,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       patente: string
+      marca: string
+      modelo: string
+      anio: number
       estado: string
       fotoUrl: string
       tipoId: number
@@ -4861,6 +4895,9 @@ export namespace Prisma {
   interface VehiculoFieldRefs {
     readonly id: FieldRef<"Vehiculo", 'Int'>
     readonly patente: FieldRef<"Vehiculo", 'String'>
+    readonly marca: FieldRef<"Vehiculo", 'String'>
+    readonly modelo: FieldRef<"Vehiculo", 'String'>
+    readonly anio: FieldRef<"Vehiculo", 'Int'>
     readonly estado: FieldRef<"Vehiculo", 'String'>
     readonly fotoUrl: FieldRef<"Vehiculo", 'String'>
     readonly tipoId: FieldRef<"Vehiculo", 'Int'>
@@ -6345,6 +6382,9 @@ export namespace Prisma {
   export const VehiculoScalarFieldEnum: {
     id: 'id',
     patente: 'patente',
+    marca: 'marca',
+    modelo: 'modelo',
+    anio: 'anio',
     estado: 'estado',
     fotoUrl: 'fotoUrl',
     tipoId: 'tipoId'
@@ -6403,6 +6443,8 @@ export namespace Prisma {
 
   export const VehiculoOrderByRelevanceFieldEnum: {
     patente: 'patente',
+    marca: 'marca',
+    modelo: 'modelo',
     estado: 'estado',
     fotoUrl: 'fotoUrl'
   };
@@ -6622,6 +6664,9 @@ export namespace Prisma {
     NOT?: VehiculoWhereInput | VehiculoWhereInput[]
     id?: IntFilter<"Vehiculo"> | number
     patente?: StringFilter<"Vehiculo"> | string
+    marca?: StringFilter<"Vehiculo"> | string
+    modelo?: StringFilter<"Vehiculo"> | string
+    anio?: IntFilter<"Vehiculo"> | number
     estado?: StringFilter<"Vehiculo"> | string
     fotoUrl?: StringFilter<"Vehiculo"> | string
     tipoId?: IntFilter<"Vehiculo"> | number
@@ -6632,6 +6677,9 @@ export namespace Prisma {
   export type VehiculoOrderByWithRelationInput = {
     id?: SortOrder
     patente?: SortOrder
+    marca?: SortOrder
+    modelo?: SortOrder
+    anio?: SortOrder
     estado?: SortOrder
     fotoUrl?: SortOrder
     tipoId?: SortOrder
@@ -6646,6 +6694,9 @@ export namespace Prisma {
     AND?: VehiculoWhereInput | VehiculoWhereInput[]
     OR?: VehiculoWhereInput[]
     NOT?: VehiculoWhereInput | VehiculoWhereInput[]
+    marca?: StringFilter<"Vehiculo"> | string
+    modelo?: StringFilter<"Vehiculo"> | string
+    anio?: IntFilter<"Vehiculo"> | number
     estado?: StringFilter<"Vehiculo"> | string
     fotoUrl?: StringFilter<"Vehiculo"> | string
     tipoId?: IntFilter<"Vehiculo"> | number
@@ -6656,6 +6707,9 @@ export namespace Prisma {
   export type VehiculoOrderByWithAggregationInput = {
     id?: SortOrder
     patente?: SortOrder
+    marca?: SortOrder
+    modelo?: SortOrder
+    anio?: SortOrder
     estado?: SortOrder
     fotoUrl?: SortOrder
     tipoId?: SortOrder
@@ -6672,6 +6726,9 @@ export namespace Prisma {
     NOT?: VehiculoScalarWhereWithAggregatesInput | VehiculoScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Vehiculo"> | number
     patente?: StringWithAggregatesFilter<"Vehiculo"> | string
+    marca?: StringWithAggregatesFilter<"Vehiculo"> | string
+    modelo?: StringWithAggregatesFilter<"Vehiculo"> | string
+    anio?: IntWithAggregatesFilter<"Vehiculo"> | number
     estado?: StringWithAggregatesFilter<"Vehiculo"> | string
     fotoUrl?: StringWithAggregatesFilter<"Vehiculo"> | string
     tipoId?: IntWithAggregatesFilter<"Vehiculo"> | number
@@ -6905,6 +6962,9 @@ export namespace Prisma {
 
   export type VehiculoCreateInput = {
     patente: string
+    marca: string
+    modelo: string
+    anio: number
     estado: string
     fotoUrl: string
     tipo: TipoVehiculoCreateNestedOneWithoutVehiculosInput
@@ -6914,6 +6974,9 @@ export namespace Prisma {
   export type VehiculoUncheckedCreateInput = {
     id?: number
     patente: string
+    marca: string
+    modelo: string
+    anio: number
     estado: string
     fotoUrl: string
     tipoId: number
@@ -6922,6 +6985,9 @@ export namespace Prisma {
 
   export type VehiculoUpdateInput = {
     patente?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     fotoUrl?: StringFieldUpdateOperationsInput | string
     tipo?: TipoVehiculoUpdateOneRequiredWithoutVehiculosNestedInput
@@ -6931,6 +6997,9 @@ export namespace Prisma {
   export type VehiculoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     patente?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     fotoUrl?: StringFieldUpdateOperationsInput | string
     tipoId?: IntFieldUpdateOperationsInput | number
@@ -6940,6 +7009,9 @@ export namespace Prisma {
   export type VehiculoCreateManyInput = {
     id?: number
     patente: string
+    marca: string
+    modelo: string
+    anio: number
     estado: string
     fotoUrl: string
     tipoId: number
@@ -6947,6 +7019,9 @@ export namespace Prisma {
 
   export type VehiculoUpdateManyMutationInput = {
     patente?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     fotoUrl?: StringFieldUpdateOperationsInput | string
   }
@@ -6954,6 +7029,9 @@ export namespace Prisma {
   export type VehiculoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     patente?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     fotoUrl?: StringFieldUpdateOperationsInput | string
     tipoId?: IntFieldUpdateOperationsInput | number
@@ -7264,6 +7342,9 @@ export namespace Prisma {
   export type VehiculoCountOrderByAggregateInput = {
     id?: SortOrder
     patente?: SortOrder
+    marca?: SortOrder
+    modelo?: SortOrder
+    anio?: SortOrder
     estado?: SortOrder
     fotoUrl?: SortOrder
     tipoId?: SortOrder
@@ -7271,12 +7352,16 @@ export namespace Prisma {
 
   export type VehiculoAvgOrderByAggregateInput = {
     id?: SortOrder
+    anio?: SortOrder
     tipoId?: SortOrder
   }
 
   export type VehiculoMaxOrderByAggregateInput = {
     id?: SortOrder
     patente?: SortOrder
+    marca?: SortOrder
+    modelo?: SortOrder
+    anio?: SortOrder
     estado?: SortOrder
     fotoUrl?: SortOrder
     tipoId?: SortOrder
@@ -7285,6 +7370,9 @@ export namespace Prisma {
   export type VehiculoMinOrderByAggregateInput = {
     id?: SortOrder
     patente?: SortOrder
+    marca?: SortOrder
+    modelo?: SortOrder
+    anio?: SortOrder
     estado?: SortOrder
     fotoUrl?: SortOrder
     tipoId?: SortOrder
@@ -7292,6 +7380,7 @@ export namespace Prisma {
 
   export type VehiculoSumOrderByAggregateInput = {
     id?: SortOrder
+    anio?: SortOrder
     tipoId?: SortOrder
   }
 
@@ -8022,6 +8111,9 @@ export namespace Prisma {
 
   export type VehiculoCreateWithoutTipoInput = {
     patente: string
+    marca: string
+    modelo: string
+    anio: number
     estado: string
     fotoUrl: string
     arriendos?: ArriendoCreateNestedManyWithoutVehiculoInput
@@ -8030,6 +8122,9 @@ export namespace Prisma {
   export type VehiculoUncheckedCreateWithoutTipoInput = {
     id?: number
     patente: string
+    marca: string
+    modelo: string
+    anio: number
     estado: string
     fotoUrl: string
     arriendos?: ArriendoUncheckedCreateNestedManyWithoutVehiculoInput
@@ -8067,6 +8162,9 @@ export namespace Prisma {
     NOT?: VehiculoScalarWhereInput | VehiculoScalarWhereInput[]
     id?: IntFilter<"Vehiculo"> | number
     patente?: StringFilter<"Vehiculo"> | string
+    marca?: StringFilter<"Vehiculo"> | string
+    modelo?: StringFilter<"Vehiculo"> | string
+    anio?: IntFilter<"Vehiculo"> | number
     estado?: StringFilter<"Vehiculo"> | string
     fotoUrl?: StringFilter<"Vehiculo"> | string
     tipoId?: IntFilter<"Vehiculo"> | number
@@ -8163,6 +8261,9 @@ export namespace Prisma {
 
   export type VehiculoCreateWithoutArriendosInput = {
     patente: string
+    marca: string
+    modelo: string
+    anio: number
     estado: string
     fotoUrl: string
     tipo: TipoVehiculoCreateNestedOneWithoutVehiculosInput
@@ -8171,6 +8272,9 @@ export namespace Prisma {
   export type VehiculoUncheckedCreateWithoutArriendosInput = {
     id?: number
     patente: string
+    marca: string
+    modelo: string
+    anio: number
     estado: string
     fotoUrl: string
     tipoId: number
@@ -8214,6 +8318,9 @@ export namespace Prisma {
 
   export type VehiculoUpdateWithoutArriendosInput = {
     patente?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     fotoUrl?: StringFieldUpdateOperationsInput | string
     tipo?: TipoVehiculoUpdateOneRequiredWithoutVehiculosNestedInput
@@ -8222,6 +8329,9 @@ export namespace Prisma {
   export type VehiculoUncheckedUpdateWithoutArriendosInput = {
     id?: IntFieldUpdateOperationsInput | number
     patente?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     fotoUrl?: StringFieldUpdateOperationsInput | string
     tipoId?: IntFieldUpdateOperationsInput | number
@@ -8336,12 +8446,18 @@ export namespace Prisma {
   export type VehiculoCreateManyTipoInput = {
     id?: number
     patente: string
+    marca: string
+    modelo: string
+    anio: number
     estado: string
     fotoUrl: string
   }
 
   export type VehiculoUpdateWithoutTipoInput = {
     patente?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     fotoUrl?: StringFieldUpdateOperationsInput | string
     arriendos?: ArriendoUpdateManyWithoutVehiculoNestedInput
@@ -8350,6 +8466,9 @@ export namespace Prisma {
   export type VehiculoUncheckedUpdateWithoutTipoInput = {
     id?: IntFieldUpdateOperationsInput | number
     patente?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     fotoUrl?: StringFieldUpdateOperationsInput | string
     arriendos?: ArriendoUncheckedUpdateManyWithoutVehiculoNestedInput
@@ -8358,6 +8477,9 @@ export namespace Prisma {
   export type VehiculoUncheckedUpdateManyWithoutTipoInput = {
     id?: IntFieldUpdateOperationsInput | number
     patente?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     estado?: StringFieldUpdateOperationsInput | string
     fotoUrl?: StringFieldUpdateOperationsInput | string
   }

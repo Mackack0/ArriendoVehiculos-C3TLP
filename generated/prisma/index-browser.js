@@ -142,6 +142,9 @@ exports.Prisma.TipoVehiculoScalarFieldEnum = {
 exports.Prisma.VehiculoScalarFieldEnum = {
   id: 'id',
   patente: 'patente',
+  marca: 'marca',
+  modelo: 'modelo',
+  anio: 'anio',
   estado: 'estado',
   fotoUrl: 'fotoUrl',
   tipoId: 'tipoId'
@@ -182,6 +185,8 @@ exports.Prisma.TipoVehiculoOrderByRelevanceFieldEnum = {
 
 exports.Prisma.VehiculoOrderByRelevanceFieldEnum = {
   patente: 'patente',
+  marca: 'marca',
+  modelo: 'modelo',
   estado: 'estado',
   fotoUrl: 'fotoUrl'
 };

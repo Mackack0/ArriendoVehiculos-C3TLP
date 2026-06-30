@@ -38,6 +38,9 @@ model TipoVehiculo {
 model Vehiculo {
   id        Int          @id @default(autoincrement())
   patente   String       @unique @db.VarChar(10)
+  marca     String       @db.VarChar(50)
+  modelo    String       @db.VarChar(50)
+  anio      Int
   estado    String       @db.VarChar(20)
   fotoUrl   String       @db.VarChar(255)
   tipoId    Int
