@@ -40,6 +40,20 @@ export default defineEventHandler(async (event) => {
         throw createError({ statusCode: 401, message: 'Usuario no autenticado' });
     }
 
+    const vehiculo = await prisma.vehiculo.findUnique({
+        where: { id: vehiculoId },
+        include: { tipo: true }
+    });
+
+    if (!vehiculo || vehiculo.estado !== 'disponible') {
+        throw createError({ statusCode: 400, message: "Solo se pueden arrendar vehículos disponibles" });
+    }
+
+    //Calcular dias (milisegundos a dias) y precio total (i forgor)
+    const msPorDia = 1000 * 60 * 60 * 24;
+    const dias = Math.ceil((fechaTermino.getTime() - fechaInicio.getTime()) / msPorDia) || 1;
+    const valorArriendo = dias * vehiculo.tipo.valorDiario;
+
     const nuevoArriendo = await prisma.arriendo.create({
         data: {
             fechaInicio,
@@ -47,8 +61,14 @@ export default defineEventHandler(async (event) => {
             vehiculoId,
             clienteRut,
             clienteNombre,
-            usuarioId
+            usuarioId,
+            valorArriendo
         }
+    });
+
+    await prisma.vehiculo.update({
+        where: { id: vehiculoId },
+        data: { estado: 'arrendado' }
     });
 
     return { success: true, arriendo: nuevoArriendo };
