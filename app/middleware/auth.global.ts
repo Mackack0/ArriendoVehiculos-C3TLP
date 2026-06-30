@@ -1,10 +1,7 @@
-<script setup lang="ts">
-const { user } = await useUserSession();
-</script>
+export default defineNuxtRouteMiddleware(async () => {
+  const { user } = await useUserSession();
 
-<template>
-    <div v-if="user"></div>
-        <p>Bienvenido, {{ user.rut }} </p>
-        <p>Tu perfil es: {{ user.perfil }}</p>
-    </div>
-</template>
+  if (user.value) {
+    return;
+  }
+});
