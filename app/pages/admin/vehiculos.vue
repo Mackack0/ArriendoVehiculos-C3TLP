@@ -6,6 +6,10 @@ const { data: vehiculos, error, pending, refresh } = await useFetch<any[]>('/api
   default: () => []
 })
 
+const { data: tipos, error: tiposError, pending: tiposPending } = await useFetch<any[]>('/api/tipos', {
+  default: () => []
+})
+
 const mostrarFormulario = ref(false)
 const creando = ref(false)
 const editando = ref(false)
@@ -162,7 +166,16 @@ async function eliminarVehiculo(id: number) {
         <input v-model="form.marca" class="rounded border p-2 bg-gray-900" placeholder="Marca" />
         <input v-model="form.modelo" class="rounded border p-2 bg-gray-900" placeholder="Modelo" />
         <input v-model="form.anio" type="number" class="rounded border p-2 bg-gray-900" placeholder="Año" />
-        <input v-model="form.tipoId" type="number" class="rounded border p-2 bg-gray-900" placeholder="ID de tipo" />
+        <div class="md:col-span-2">
+          <select v-model="form.tipoId" class="w-full rounded border p-2 bg-gray-900 text-white">
+            <option value="">Seleccione un tipo</option>
+            <option v-for="tipo in tipos" :key="tipo.id" :value="String(tipo.id)">
+              {{ tipo.nombre }}
+            </option>
+          </select>
+          <p v-if="tiposPending" class="mt-2 text-sm text-gray-400">Cargando tipos...</p>
+          <p v-else-if="tiposError" class="mt-2 text-sm text-red-400">No se pudieron cargar los tipos</p>
+        </div>
         <input type="file" @change="onFileChange" class="rounded border p-2 bg-gray-900 text-white" />
       </div>
       <button
