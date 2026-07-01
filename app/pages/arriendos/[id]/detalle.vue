@@ -23,7 +23,7 @@ const formatearFecha = (fecha: string) => {
         <NuxtLink :to="`/arriendos/${arriendoId}/registro`" class="text-yellow-400 hover:text-yellow-300 underline text-sm font-semibold">
           + Subir nueva foto
         </NuxtLink>
-        <NuxtLink to="/arriendos" class="text-blue-400 hover:text-blue-300 underline text-sm">
+        <NuxtLink to="/arriendos/base" class="text-blue-400 hover:text-blue-300 underline text-sm">
           Volver a la lista
         </NuxtLink>
       </div>

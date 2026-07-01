@@ -3,6 +3,7 @@ import { ref, reactive } from 'vue'
 
 const route = useRoute()
 const arriendoId = route.params.id
+const volverAlDetalle = computed(() => `/arriendos/${arriendoId}/detalle`)
 
 const enviando = ref(false)
 const mensajeError = ref('')
@@ -48,7 +49,7 @@ async function guardarRegistro() {
     mensajeExito.value = `Fotografía de ${form.tipoRegistro} guardada correctamente.`
     
     setTimeout(() => {
-      navigateTo('/arriendos/base')
+      navigateTo(volverAlDetalle.value)
     }, 2000)
 
   } catch (err: any) {
@@ -63,7 +64,7 @@ async function guardarRegistro() {
   <div class="container mx-auto p-4 max-w-lg mt-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-2xl font-bold text-white">Registro Fotográfico</h1>
-      <NuxtLink to="/arriendos/base" class="text-blue-400 hover:text-blue-300 underline text-sm">
+      <NuxtLink :to="volverAlDetalle" class="text-blue-400 hover:text-blue-300 underline text-sm">
         Volver
       </NuxtLink>
     </div>

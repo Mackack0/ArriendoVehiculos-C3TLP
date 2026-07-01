@@ -2,6 +2,10 @@
 import { reactive, ref } from 'vue'
 import * as z from 'zod'
 
+const { user } = useUserSession()
+
+const inicio = computed(() => (user.value as any)?.perfil === 'administrador' ? '/admin' : '/arriendos/base')
+
 const schema = z.object({
   password: z.string().min(8, 'La contraseña debe tener al menos 8 caracteres'),
   confirmPassword: z.string()
@@ -58,7 +62,12 @@ async function actualizarContrasena() {
 <template>
   <div class="container mx-auto p-4 max-w-md mt-10">
     <div class="bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
-      <h1 class="text-2xl font-bold text-white mb-6">Mi Perfil</h1>
+      <div class="mb-6 flex items-center justify-between gap-4">
+        <h1 class="text-2xl font-bold text-white">Mi Perfil</h1>
+        <NuxtLink :to="inicio" class="text-blue-400 hover:text-blue-300 underline text-sm">
+          Volver
+        </NuxtLink>
+      </div>
 
       <p class="text-gray-300 text-sm mb-4">
         Ingresa tu nueva contraseña a continuación.

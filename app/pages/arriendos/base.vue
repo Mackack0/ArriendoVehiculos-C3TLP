@@ -78,6 +78,12 @@ const formatearFecha = (fecha: string) => {
               </td>
               <td class="px-4 py-3 text-center">
                 <NuxtLink
+                  :to="`/arriendos/${item.id}/detalle`"
+                  class="mr-2 rounded bg-gray-700 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-gray-600"
+                >
+                  Detalle
+                </NuxtLink>
+                <NuxtLink
                   :to="`/arriendos/${item.id}/registro`"
                   class="rounded bg-yellow-600 hover:bg-yellow-700 px-3 py-1.5 text-white text-xs font-semibold transition-colors"
                 >
