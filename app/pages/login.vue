@@ -21,6 +21,7 @@ const state = reactive<Partial<Schema>>({
 
 const errorForm = ref('')
 const iniciandoSesion = ref(false)
+const session = useUserSession()
 
 const onSubmit = async (event: FormSubmitEvent<Schema>) => {
   event.preventDefault()
@@ -28,7 +29,7 @@ const onSubmit = async (event: FormSubmitEvent<Schema>) => {
 }
 
 async function obtenerDestinoInicio() {
-  const { user } = await useUserSession()
+  const { user } = session
   const perfil = (user.value as { perfil?: string } | null)?.perfil
 
   if (perfil === 'administrador') {
@@ -51,6 +52,7 @@ async function login() {
       }
     })
 
+    await session.fetch()
     await navigateTo(await obtenerDestinoInicio())
   }
   catch (err: any) {

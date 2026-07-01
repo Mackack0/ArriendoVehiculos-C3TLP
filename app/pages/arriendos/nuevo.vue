@@ -103,11 +103,11 @@ async function crearArriendo() {
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-sm font-medium text-gray-400 mb-1">Fecha de Inicio</label>
-            <input v-model="form.fechaInicio" type="date" required class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white [color-scheme:dark]" />
+            <input v-model="form.fechaInicio" type="date" required class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white scheme-dark" />
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-400 mb-1">Fecha de Término</label>
-            <input v-model="form.fechaTermino" type="date" required class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white [color-scheme:dark]" />
+            <input v-model="form.fechaTermino" type="date" required class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white scheme-dark" />
           </div>
         </div>
 
