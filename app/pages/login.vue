@@ -63,6 +63,8 @@ async function login() {
                         <UInput v-model="state.password" type="password" variant="none" class="w-full bg-gray-900 rounded border border-gray-600 " />
                     </UFormField>
 
+                    <p v-if="errorForm" class="text-red-400 text-sm">{{ errorForm }}</p>
+
                     <UButton type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-4 active:bg-blue-400 transition-colors">
                     Submit
                     </UButton>

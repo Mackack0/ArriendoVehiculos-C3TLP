@@ -17,12 +17,27 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 401, message: "Credenciales no son válidas" });
   }
 
-  const passwordValido = await bcrypt.compare(password, usuario.password);
+  let passwordValido = false;
+
+  try {
+    passwordValido = await bcrypt.compare(password, usuario.password);
+  } catch {
+    passwordValido = false;
+  }
+
+  if (!passwordValido && usuario.password === password) {
+    passwordValido = true;
+    const passwordHash = await bcrypt.hash(password, 10);
+    await prisma.usuario.update({
+      where: { id: usuario.id },
+      data: { password: passwordHash }
+    });
+  }
+
   if (!passwordValido) {
     throw createError({ statusCode: 401, message: "Credenciales no son válidas" });
   }
 
- 
   await setUserSession(event, {
     user: {
       id: usuario.id,

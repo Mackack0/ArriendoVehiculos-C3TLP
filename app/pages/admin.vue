@@ -7,10 +7,7 @@ const { data: usuarios, error, pending, refresh } = await useFetch<any[]>('/api/
 const { user } = useUserSession()
 
 async function listarUsuarios() {
-  if (!user.value) {
-    await navigateTo('/login')
-    return
-  }
+  
 
   await refresh()
 }
