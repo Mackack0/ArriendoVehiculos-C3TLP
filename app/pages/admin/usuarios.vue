@@ -76,7 +76,7 @@ async function eliminarUsuario(id: number) {
 <template>
   <div>
     <div class="bg-gray-800 p-4">
-      <h1 class="text-2xl font-bold text-white">Administrador</h1>
+      <h1 class="text-2xl font-bold text-white">Administrador - Usuarios</h1>
       <div class="flex flex-wrap">
         <button
           class="bg-green-600 hover:bg-green-700 active:bg-green-800 text-white font-semibold py-2 px-4 m-1.5 rounded transition-colors"
