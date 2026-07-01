@@ -64,7 +64,6 @@ async function eliminarUsuario(id: number) {
       method: 'DELETE'
     })
 
-    mensaje.value = 'Usuario eliminado correctamente'
     await refresh()
   } catch (err: any) {
     mensaje.value = err?.data?.message || err?.message || 'No se pudo eliminar el usuario'
@@ -128,13 +127,19 @@ async function eliminarUsuario(id: number) {
           <p>{{ item.email }}</p>
           <p class="text-gray-600">{{ item.perfil?.nombre || 'Sin perfil' }}</p>
         </div>
-        <button
-          class="rounded bg-red-600 px-3 py-2 text-white"
-          :disabled="eliminandoId === item.id"
-          @click="eliminarUsuario(item.id)"
-        >
-          {{ eliminandoId === item.id ? 'Eliminando...' : 'Eliminar' }}
-        </button>
+
+
+        <div class="flex space-x-2">
+            <button class="rounded bg-blue-600 px-3 py-2 text-white"> Editar </button>
+            <button
+            class="rounded bg-red-600 px-3 py-2 text-white"
+            :disabled="eliminandoId === item.id"
+            @click="eliminarUsuario(item.id)"
+            >
+            {{ eliminandoId === item.id ? 'Eliminando...' : 'Eliminar' }}
+            </button>
+        </div>
+
       </li>
     </ul>
     <p v-else class="text-gray-600">Aún no hay usuarios listados.</p>
