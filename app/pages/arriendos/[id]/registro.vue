@@ -87,9 +87,9 @@ async function guardarRegistro() {
         
         <div>
           <label class="block text-sm font-medium text-gray-400 mb-1">Acción a registrar</label>
-          <select v-model="form.tipoRegistro" required class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white">
-            <option value="entrega">Entrega de vehículo (Al cliente)</option>
-            <option value="recepcion">Recepción de vehículo (Devolución)</option>
+          <select v-model="form.tipoRegistro" required class="w-full rounded border border-gray-300 bg-white p-2 text-gray-900">
+            <option value="entrega" class="text-gray-900">Entrega de vehículo (Al cliente)</option>
+            <option value="recepcion" class="text-gray-900">Recepción de vehículo (Devolución)</option>
           </select>
         </div>
 

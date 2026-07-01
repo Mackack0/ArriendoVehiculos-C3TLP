@@ -56,72 +56,71 @@ async function crearArriendo() {
 </script>
 
 <template>
-  <div class="container mx-auto p-4 max-w-2xl mt-6">
-    <div class="flex items-center justify-between mb-6">
-      <h1 class="text-2xl font-bold text-white">Nuevo Arriendo</h1>
-      <NuxtLink to="/arriendos/base" class="text-blue-400 hover:text-blue-300 underline text-sm">
-        Volver a la lista
-      </NuxtLink>
-    </div>
-
-    <div class="bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
-      
-      <div v-if="mensajeError" class="mb-4 bg-red-900 border border-red-700 text-red-200 px-4 py-3 rounded">
-        {{ mensajeError }}
-      </div>
-      
-      <div v-if="mensajeExito" class="mb-4 bg-green-900 border border-green-700 text-green-200 px-4 py-3 rounded">
-        {{ mensajeExito }}
+  <div class="bg-[url(/assets/images/highway.webp)] bg-cover bg-center py-6 text-white">
+    <div class="mx-auto max-w-2xl px-4">
+      <div class="mb-6 flex items-center justify-between">
+        <h1 class="text-2xl font-bold text-white">Nuevo Arriendo</h1>
+        <NuxtLink to="/arriendos/base" class="text-sm text-blue-200 underline transition-colors hover:text-white">
+          Volver a la lista
+        </NuxtLink>
       </div>
 
-      <form @submit.prevent="crearArriendo" class="space-y-4">
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-400 mb-1">RUT Cliente</label>
-            <input v-model="form.clienteRut" type="text" required class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white" placeholder="Ej: 12.345.678-9" />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-400 mb-1">Nombre Cliente</label>
-            <input v-model="form.clienteNombre" type="text" required class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white" placeholder="Nombre completo" />
-          </div>
+      <div class="rounded-2xl border border-white/20 bg-white/10 p-6 shadow-2xl shadow-black/30 backdrop-blur-xl">
+        <div v-if="mensajeError" class="mb-4 rounded border border-red-400/30 bg-red-500/10 px-4 py-3 text-red-200">
+          {{ mensajeError }}
         </div>
 
-        <div>
-          <label class="block text-sm font-medium text-gray-400 mb-1">Vehículo (Solo Disponibles)</label>
-          <select v-model="form.vehiculoId" required class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white">
-            <option value="" disabled>Seleccione un vehículo...</option>
-            <option v-for="v in vehiculosDisponibles" :key="v.id" :value="v.id">
-              {{ v.marca }} {{ v.modelo }} ({{ v.patente }}) - Tipo ID: {{ v.tipoId }}
-            </option>
-          </select>
-          <p v-if="vehiculosDisponibles.length === 0" class="text-xs text-red-400 mt-1">
-            No hay vehículos disponibles en este momento.
-          </p>
+        <div v-if="mensajeExito" class="mb-4 rounded border border-green-400/30 bg-green-500/10 px-4 py-3 text-green-200">
+          {{ mensajeExito }}
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-400 mb-1">Fecha de Inicio</label>
-            <input v-model="form.fechaInicio" type="date" required class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white scheme-dark" />
+        <form @submit.prevent="crearArriendo" class="space-y-4">
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div>
+              <label class="mb-1 block text-sm font-medium text-gray-200">RUT Cliente</label>
+              <input v-model="form.clienteRut" type="text" required class="w-full rounded-xl border border-white/20 bg-white/10 p-2 text-white outline-none placeholder:text-gray-300" placeholder="Ej: 12.345.678-9" />
+            </div>
+            <div>
+              <label class="mb-1 block text-sm font-medium text-gray-200">Nombre Cliente</label>
+              <input v-model="form.clienteNombre" type="text" required class="w-full rounded-xl border border-white/20 bg-white/10 p-2 text-white outline-none placeholder:text-gray-300" placeholder="Nombre completo" />
+            </div>
           </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-400 mb-1">Fecha de Término</label>
-            <input v-model="form.fechaTermino" type="date" required class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white scheme-dark" />
-          </div>
-        </div>
 
-        <div class="pt-4">
-          <button
-            type="submit"
-            :disabled="enviando || vehiculosDisponibles.length === 0"
-            class="w-full bg-green-600 hover:bg-green-700 active:bg-green-800 disabled:bg-gray-600 text-white font-semibold py-3 px-4 rounded transition-colors"
-          >
-            {{ enviando ? 'Registrando arriendo...' : 'Registrar y Calcular Precio' }}
-          </button>
-        </div>
-        
-      </form>
+          <div>
+            <label class="mb-1 block text-sm font-medium text-gray-200">Vehículo (Solo Disponibles)</label>
+            <select v-model="form.vehiculoId" required class="w-full rounded-xl border border-gray-300 bg-white/95 p-2 text-gray-900 outline-none">
+              <option value="" disabled class="text-gray-900">Seleccione un vehículo...</option>
+              <option v-for="v in vehiculosDisponibles" :key="v.id" :value="v.id" class="text-gray-900">
+                {{ v.marca }} {{ v.modelo }} ({{ v.patente }}) - Tipo ID: {{ v.tipoId }}
+              </option>
+            </select>
+            <p v-if="vehiculosDisponibles.length === 0" class="mt-1 text-xs text-red-200">
+              No hay vehículos disponibles en este momento.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div>
+              <label class="mb-1 block text-sm font-medium text-gray-200">Fecha de Inicio</label>
+              <input v-model="form.fechaInicio" type="date" required class="w-full rounded-xl border border-white/20 bg-white/10 p-2 text-white outline-none scheme-dark" />
+            </div>
+            <div>
+              <label class="mb-1 block text-sm font-medium text-gray-200">Fecha de Término</label>
+              <input v-model="form.fechaTermino" type="date" required class="w-full rounded-xl border border-white/20 bg-white/10 p-2 text-white outline-none scheme-dark" />
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <button
+              type="submit"
+              :disabled="enviando || vehiculosDisponibles.length === 0"
+              class="w-full rounded-xl bg-green-600/90 px-4 py-3 font-semibold text-white transition-all duration-200 hover:bg-green-500 hover:shadow-[0_0_18px_rgba(22,163,74,0.45)] disabled:bg-gray-600"
+            >
+              {{ enviando ? 'Registrando arriendo...' : 'Registrar y Calcular Precio' }}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>

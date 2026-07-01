@@ -60,60 +60,60 @@ async function actualizarContrasena() {
 </script>
 
 <template>
-  <div class="container mx-auto p-4 max-w-md mt-10">
-    <div class="bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
-      <div class="mb-6 flex items-center justify-between gap-4">
-        <h1 class="text-2xl font-bold text-white">Mi Perfil</h1>
-        <NuxtLink :to="inicio" class="text-blue-400 hover:text-blue-300 underline text-sm">
-          Volver
-        </NuxtLink>
-      </div>
-
-      <p class="text-gray-300 text-sm mb-4">
-        Ingresa tu nueva contraseña a continuación.
-      </p>
-
-      <div v-if="mensajeError" class="mb-4 bg-red-900 border border-red-700 text-red-200 px-4 py-3 rounded">
-        {{ mensajeError }}
-      </div>
-      
-      <div v-if="mensajeExito" class="mb-4 bg-green-900 border border-green-700 text-green-200 px-4 py-3 rounded">
-        {{ mensajeExito }}
-      </div>
-
-      <form @submit.prevent="actualizarContrasena" class="space-y-4">
-        
-        <div>
-          <label class="block text-sm font-medium text-gray-400 mb-1">Nueva Contraseña</label>
-          <input 
-            v-model="form.password" 
-            type="password" 
-            placeholder="••••••••"
-            class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500" 
-          />
+  <div class="bg-[url(/assets/images/highway.webp)] bg-cover bg-center py-10 text-white">
+    <div class="mx-auto max-w-md px-4">
+      <div class="rounded-2xl border border-white/20 bg-white/10 p-6 shadow-2xl shadow-black/30 backdrop-blur-xl">
+        <div class="mb-6 flex items-center justify-between gap-4">
+          <h1 class="text-2xl font-bold text-white">Mi Perfil</h1>
+          <NuxtLink :to="inicio" class="text-sm text-blue-200 underline transition-colors hover:text-white">
+            Volver
+          </NuxtLink>
         </div>
 
-        <div>
-          <label class="block text-sm font-medium text-gray-400 mb-1">Confirmar Contraseña</label>
-          <input 
-            v-model="form.confirmPassword" 
-            type="password" 
-            placeholder="••••••••"
-            class="w-full rounded border border-gray-600 bg-gray-900 p-2 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500" 
-          />
+        <p class="mb-4 text-sm text-gray-200">
+          Ingresa tu nueva contraseña a continuación.
+        </p>
+
+        <div v-if="mensajeError" class="mb-4 rounded border border-red-400/30 bg-red-500/10 px-4 py-3 text-red-200">
+          {{ mensajeError }}
         </div>
 
-        <div class="pt-4">
-          <button
-            type="submit"
-            :disabled="enviando"
-            class="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:bg-gray-600 text-white font-semibold py-2 px-4 rounded transition-colors"
-          >
-            {{ enviando ? 'Guardando...' : 'Cambiar Contraseña' }}
-          </button>
+        <div v-if="mensajeExito" class="mb-4 rounded border border-green-400/30 bg-green-500/10 px-4 py-3 text-green-200">
+          {{ mensajeExito }}
         </div>
-        
-      </form>
+
+        <form @submit.prevent="actualizarContrasena" class="space-y-4">
+          <div>
+            <label class="mb-1 block text-sm font-medium text-gray-200">Nueva Contraseña</label>
+            <input
+              v-model="form.password"
+              type="password"
+              placeholder="••••••••"
+              class="w-full rounded-xl border border-white/20 bg-white/10 p-2 text-white outline-none placeholder:text-gray-300"
+            />
+          </div>
+
+          <div>
+            <label class="mb-1 block text-sm font-medium text-gray-200">Confirmar Contraseña</label>
+            <input
+              v-model="form.confirmPassword"
+              type="password"
+              placeholder="••••••••"
+              class="w-full rounded-xl border border-white/20 bg-white/10 p-2 text-white outline-none placeholder:text-gray-300"
+            />
+          </div>
+
+          <div class="pt-4">
+            <button
+              type="submit"
+              :disabled="enviando"
+              class="w-full rounded-xl bg-blue-600/90 px-4 py-2 font-semibold text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_18px_rgba(37,99,235,0.45)] disabled:bg-gray-600"
+            >
+              {{ enviando ? 'Guardando...' : 'Cambiar Contraseña' }}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>

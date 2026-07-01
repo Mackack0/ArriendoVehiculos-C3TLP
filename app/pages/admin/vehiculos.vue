@@ -168,9 +168,9 @@ async function eliminarVehiculo(id: number) {
           <input v-model="form.modelo" class="rounded-xl border border-white/20 bg-white/10 p-2 text-white placeholder:text-gray-300 outline-none" placeholder="Modelo" />
           <input v-model="form.anio" type="number" class="rounded-xl border border-white/20 bg-white/10 p-2 text-white placeholder:text-gray-300 outline-none" placeholder="Año" />
           <div class="md:col-span-2">
-            <select v-model="form.tipoId" class="w-full rounded-xl border border-white/20 bg-white/10 p-2 text-white outline-none">
-              <option value="">Seleccione un tipo</option>
-              <option v-for="tipo in tipos" :key="tipo.id" :value="String(tipo.id)">
+            <select v-model="form.tipoId" class="w-full rounded-xl border border-gray-300 bg-white/95 p-2 text-gray-900 outline-none">
+              <option value="" class="text-gray-900">Seleccione un tipo</option>
+              <option v-for="tipo in tipos" :key="tipo.id" :value="String(tipo.id)" class="text-gray-900">
                 {{ tipo.nombre }}
               </option>
             </select>

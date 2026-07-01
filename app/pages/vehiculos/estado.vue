@@ -36,12 +36,12 @@ async function cambiarEstado(id: number, nuevoEstado: string) {
         <select 
           :value="v.estado" 
           @change="(e: any) => cambiarEstado(v.id, e.target.value)"
-          class="bg-gray-900 text-white border border-gray-600 rounded p-1 text-sm"
+          class="rounded border border-gray-300 bg-white p-1 text-sm text-gray-900"
         >
-          <option value="disponible">Disponible</option>
-          <option value="arrendado">Arrendado</option>
-          <option value="mantenimiento">En Mantenimiento</option>
-          <option value="baja">De Baja</option>
+          <option value="disponible" class="text-gray-900">Disponible</option>
+          <option value="arrendado" class="text-gray-900">Arrendado</option>
+          <option value="mantenimiento" class="text-gray-900">En Mantenimiento</option>
+          <option value="baja" class="text-gray-900">De Baja</option>
         </select>
       </div>
     </div>

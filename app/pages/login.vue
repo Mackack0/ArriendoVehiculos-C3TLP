@@ -67,27 +67,26 @@ async function login() {
 
 
 <template>
-  <div class="min-h-screen bg-gray-900 text-white">
+  <div class="min-h-screen bg-[url(/assets/images/highway.webp)] bg-cover bg-center text-white">
     <div class="grid min-h-screen place-items-center px-4">
-      <div class="w-full max-w-md rounded-2xl border border-gray-700 bg-gray-800 p-8 shadow-2xl shadow-black/30">
-                <h1 class="text-2xl font-bold text-white">Login</h1>
-                <UForm :schema="schema" :state="state" class="space-y-3 p-6" @submit="onSubmit">
-                    <UFormField label="Email" name="email">
-                        <UInput v-model="state.email" variant="none" class="w-full bg-gray-900 rounded border border-gray-600 "/>
-                    </UFormField>
+      <div class="w-full max-w-md rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl shadow-black/30 backdrop-blur-xl">
+        <h1 class="text-2xl font-bold text-white">Login</h1>
+        <UForm :schema="schema" :state="state" class="space-y-3 p-6" @submit="onSubmit">
+          <UFormField label="Email" name="email">
+            <UInput v-model="state.email" variant="none" class="w-full rounded-xl border border-white/20 bg-white/10 p-2 text-white outline-none placeholder:text-gray-300" />
+          </UFormField>
 
-                    <UFormField label="Contraseña" name="password">
-                        <UInput v-model="state.password" type="password" variant="none" class="w-full bg-gray-900 rounded border border-gray-600 " />
-                    </UFormField>
+          <UFormField label="Contraseña" name="password">
+            <UInput v-model="state.password" type="password" variant="none" class="w-full rounded-xl border border-white/20 bg-white/10 p-2 text-white outline-none placeholder:text-gray-300" />
+          </UFormField>
 
-                    <p v-if="errorForm" class="text-red-400 text-sm">{{ errorForm }}</p>
+          <p v-if="errorForm" class="text-sm text-red-200">{{ errorForm }}</p>
 
-                    <UButton :loading="iniciandoSesion" type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-4 active:bg-blue-400 transition-colors">
-                    Iniciar sesión
-                    </UButton>
-                </UForm>
-
-            </div>
-        </div>
+          <UButton :loading="iniciandoSesion" type="submit" class="mt-4 w-full rounded-xl bg-blue-600/90 px-4 py-2 font-semibold text-white transition-all duration-200 hover:bg-blue-500 hover:shadow-[0_0_18px_rgba(37,99,235,0.45)] active:bg-blue-400">
+            Iniciar sesión
+          </UButton>
+        </UForm>
+      </div>
     </div>
+  </div>
 </template>
