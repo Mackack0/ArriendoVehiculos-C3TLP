@@ -3,6 +3,12 @@ import fs from 'node:fs'; //it lets you interact with the file system
 import path from 'node:path'; // it handles directory paths automatically
 
 export default defineEventHandler(async (event) => {
+    const session = await requireUserSession(event);
+    const perfil = (session.user as { perfil?: string }).perfil;
+    if (perfil !== 'administrador') {
+        throw createError({ statusCode: 403, message: "Funcionalidad exclusiva de administrador" });
+    }
+
     const formData = await readMultipartFormData(event);
 
     if (!formData) {
@@ -36,9 +42,13 @@ export default defineEventHandler(async (event) => {
 
         // Guarda la foto en la carpeta 'public/uploads' y genera un nombre único para el archivo
         if (field.name === 'fotoUrl' && field.filename) {
-            nombreArchivo = `${Date.now()}_${field.filename}`;
-            const rutaDestino = path.join(process.cwd(), 'app', 'public', 'uploads', nombreArchivo);
-            fs.writeFileSync(rutaDestino, field.data);
+            try {
+                nombreArchivo = `${Date.now()}_${field.filename}`;
+                const rutaDestino = path.join(process.cwd(), 'app', 'public', 'uploads', nombreArchivo);
+                fs.writeFileSync(rutaDestino, field.data);
+            } catch (error) {
+                throw createError({ statusCode: 500, message: "Error al guardar la foto" });
+            }
         }
     }
 

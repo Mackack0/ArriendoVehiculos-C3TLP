@@ -21,10 +21,10 @@ export default defineEventHandler(async (event) => {
       patente: body.patente,
       marca: body.marca,
       modelo: body.modelo,
-      ano: Number(body.ano),
+      anio: Number(body.anio),
       tipoId: Number(body.tipoId)
     }
   });
 
-  return { ok: true, vehiculo: vehiculoActualizado };
+  return { success: true, vehiculo: vehiculoActualizado };
 });
