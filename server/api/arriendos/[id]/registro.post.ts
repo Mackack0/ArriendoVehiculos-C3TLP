@@ -19,11 +19,14 @@ export default defineEventHandler(async (event) => {
         if (field.name === 'tipoRegistro') tipoRegistro = field.data.toString();
         if (field.name === 'fechaHoraReal') fechaHoraReal = field.data.toString();
         
-        if (field.name === 'foto' && field.filename) {
-            nombreArchivo = `arriendo-${id}-${Date.now()}-${field.filename}`;
-            const rutaDestino = path.join(process.cwd(), 'app', 'public', 'uploads', nombreArchivo);
-            
-            fs.writeFileSync(rutaDestino, field.data);
+        if (field.name === 'fotos' && field.filename) {
+            try {
+                nombreArchivo = `arriendo-${id}-${Date.now()}-${field.filename}`;
+                const rutaDestino = path.join(process.cwd(), 'app', 'public', 'uploads', nombreArchivo);
+                fs.writeFileSync(rutaDestino, field.data);
+            } catch (error) {
+                throw createError({ statusCode: 500, message: "Error al guardar la fotografía" });
+            }
         }
     }
 
@@ -31,29 +34,34 @@ export default defineEventHandler(async (event) => {
         throw createError({ statusCode: 400, message: "Faltan datos requeridos o la fotografia" });
     }
 
-    if (tipoRegistro === 'entrega') {
-        await prisma.arriendo.update({
-            where: { id },
-            data: {
-                fechaEntrega: new Date(fechaHoraReal),
-                fotoEntrega: `/uploads/${nombreArchivo}`
-            }
-        });
-    } 
-    else if (tipoRegistro === 'recepcion') {
-        const arriendo = await prisma.arriendo.update({
-            where: { id },
-            data: {
-                fotosRecepcion: `/uploads/${nombreArchivo}`
-            }
-        });
+    try {
+        if (tipoRegistro === 'entrega') {
+            await prisma.arriendo.update({
+                where: { id },
+                data: {
+                    fechaEntrega: new Date(fechaHoraReal),
+                    fotosEntrega: `/uploads/${nombreArchivo}`
+                }
+            });
+        } 
+        else if (tipoRegistro === 'recepcion') {
+            const arriendo = await prisma.arriendo.update({
+                where: { id },
+                data: {
+                    fechaRecepcion: new Date(fechaHoraReal),
+                    fotosRecepcion: `/uploads/${nombreArchivo}`
+                }
+            });
 
-        await prisma.vehiculo.update({
-            where: { id: arriendo.vehiculoId },
-            data: { estado: 'disponible' }
-        });
-    } else {
-        throw createError({ statusCode: 400, message: "Tipo de registro no valido" });
+            await prisma.vehiculo.update({
+                where: { id: arriendo.vehiculoId },
+                data: { estado: 'disponible' }
+            });
+        } else {
+            throw createError({ statusCode: 400, message: "Tipo de registro no valido" });
+        }
+    } catch (error) {
+        throw createError({ statusCode: 500, message: "Error al procesar el registro" });
     }
 
     return { success: true, message: `Registro de ${tipoRegistro} guardado correctamente` };

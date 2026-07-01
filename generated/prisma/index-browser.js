@@ -161,7 +161,8 @@ exports.Prisma.ArriendoScalarFieldEnum = {
   clienteRut: 'clienteRut',
   clienteNombre: 'clienteNombre',
   vehiculoId: 'vehiculoId',
-  usuarioId: 'usuarioId'
+  usuarioId: 'usuarioId',
+  valorArriendo: 'valorArriendo'
 };
 
 exports.Prisma.SortOrder = {

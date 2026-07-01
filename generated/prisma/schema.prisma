@@ -60,6 +60,7 @@ model Arriendo {
   clienteNombre  String    @db.VarChar(100)
   vehiculoId     Int
   usuarioId      Int
+  valorArriendo  Int
   vehiculo       Vehiculo  @relation(fields: [vehiculoId], references: [id])
   usuario        Usuario   @relation(fields: [usuarioId], references: [id])
 }

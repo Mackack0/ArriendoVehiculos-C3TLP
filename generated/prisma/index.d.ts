@@ -5307,12 +5307,14 @@ export namespace Prisma {
     id: number | null
     vehiculoId: number | null
     usuarioId: number | null
+    valorArriendo: number | null
   }
 
   export type ArriendoSumAggregateOutputType = {
     id: number | null
     vehiculoId: number | null
     usuarioId: number | null
+    valorArriendo: number | null
   }
 
   export type ArriendoMinAggregateOutputType = {
@@ -5327,6 +5329,7 @@ export namespace Prisma {
     clienteNombre: string | null
     vehiculoId: number | null
     usuarioId: number | null
+    valorArriendo: number | null
   }
 
   export type ArriendoMaxAggregateOutputType = {
@@ -5341,6 +5344,7 @@ export namespace Prisma {
     clienteNombre: string | null
     vehiculoId: number | null
     usuarioId: number | null
+    valorArriendo: number | null
   }
 
   export type ArriendoCountAggregateOutputType = {
@@ -5355,6 +5359,7 @@ export namespace Prisma {
     clienteNombre: number
     vehiculoId: number
     usuarioId: number
+    valorArriendo: number
     _all: number
   }
 
@@ -5363,12 +5368,14 @@ export namespace Prisma {
     id?: true
     vehiculoId?: true
     usuarioId?: true
+    valorArriendo?: true
   }
 
   export type ArriendoSumAggregateInputType = {
     id?: true
     vehiculoId?: true
     usuarioId?: true
+    valorArriendo?: true
   }
 
   export type ArriendoMinAggregateInputType = {
@@ -5383,6 +5390,7 @@ export namespace Prisma {
     clienteNombre?: true
     vehiculoId?: true
     usuarioId?: true
+    valorArriendo?: true
   }
 
   export type ArriendoMaxAggregateInputType = {
@@ -5397,6 +5405,7 @@ export namespace Prisma {
     clienteNombre?: true
     vehiculoId?: true
     usuarioId?: true
+    valorArriendo?: true
   }
 
   export type ArriendoCountAggregateInputType = {
@@ -5411,6 +5420,7 @@ export namespace Prisma {
     clienteNombre?: true
     vehiculoId?: true
     usuarioId?: true
+    valorArriendo?: true
     _all?: true
   }
 
@@ -5512,6 +5522,7 @@ export namespace Prisma {
     clienteNombre: string
     vehiculoId: number
     usuarioId: number
+    valorArriendo: number
     _count: ArriendoCountAggregateOutputType | null
     _avg: ArriendoAvgAggregateOutputType | null
     _sum: ArriendoSumAggregateOutputType | null
@@ -5545,6 +5556,7 @@ export namespace Prisma {
     clienteNombre?: boolean
     vehiculoId?: boolean
     usuarioId?: boolean
+    valorArriendo?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["arriendo"]>
@@ -5563,9 +5575,10 @@ export namespace Prisma {
     clienteNombre?: boolean
     vehiculoId?: boolean
     usuarioId?: boolean
+    valorArriendo?: boolean
   }
 
-  export type ArriendoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fechaInicio" | "fechaTermino" | "fechaEntrega" | "fechaRecepcion" | "fotosEntrega" | "fotosRecepcion" | "clienteRut" | "clienteNombre" | "vehiculoId" | "usuarioId", ExtArgs["result"]["arriendo"]>
+  export type ArriendoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fechaInicio" | "fechaTermino" | "fechaEntrega" | "fechaRecepcion" | "fotosEntrega" | "fotosRecepcion" | "clienteRut" | "clienteNombre" | "vehiculoId" | "usuarioId" | "valorArriendo", ExtArgs["result"]["arriendo"]>
   export type ArriendoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
@@ -5589,6 +5602,7 @@ export namespace Prisma {
       clienteNombre: string
       vehiculoId: number
       usuarioId: number
+      valorArriendo: number
     }, ExtArgs["result"]["arriendo"]>
     composites: {}
   }
@@ -5971,6 +5985,7 @@ export namespace Prisma {
     readonly clienteNombre: FieldRef<"Arriendo", 'String'>
     readonly vehiculoId: FieldRef<"Arriendo", 'Int'>
     readonly usuarioId: FieldRef<"Arriendo", 'Int'>
+    readonly valorArriendo: FieldRef<"Arriendo", 'Int'>
   }
     
 
@@ -6404,7 +6419,8 @@ export namespace Prisma {
     clienteRut: 'clienteRut',
     clienteNombre: 'clienteNombre',
     vehiculoId: 'vehiculoId',
-    usuarioId: 'usuarioId'
+    usuarioId: 'usuarioId',
+    valorArriendo: 'valorArriendo'
   };
 
   export type ArriendoScalarFieldEnum = (typeof ArriendoScalarFieldEnum)[keyof typeof ArriendoScalarFieldEnum]
@@ -6749,6 +6765,7 @@ export namespace Prisma {
     clienteNombre?: StringFilter<"Arriendo"> | string
     vehiculoId?: IntFilter<"Arriendo"> | number
     usuarioId?: IntFilter<"Arriendo"> | number
+    valorArriendo?: IntFilter<"Arriendo"> | number
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
   }
@@ -6765,6 +6782,7 @@ export namespace Prisma {
     clienteNombre?: SortOrder
     vehiculoId?: SortOrder
     usuarioId?: SortOrder
+    valorArriendo?: SortOrder
     vehiculo?: VehiculoOrderByWithRelationInput
     usuario?: UsuarioOrderByWithRelationInput
     _relevance?: ArriendoOrderByRelevanceInput
@@ -6785,6 +6803,7 @@ export namespace Prisma {
     clienteNombre?: StringFilter<"Arriendo"> | string
     vehiculoId?: IntFilter<"Arriendo"> | number
     usuarioId?: IntFilter<"Arriendo"> | number
+    valorArriendo?: IntFilter<"Arriendo"> | number
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
   }, "id">
@@ -6801,6 +6820,7 @@ export namespace Prisma {
     clienteNombre?: SortOrder
     vehiculoId?: SortOrder
     usuarioId?: SortOrder
+    valorArriendo?: SortOrder
     _count?: ArriendoCountOrderByAggregateInput
     _avg?: ArriendoAvgOrderByAggregateInput
     _max?: ArriendoMaxOrderByAggregateInput
@@ -6823,6 +6843,7 @@ export namespace Prisma {
     clienteNombre?: StringWithAggregatesFilter<"Arriendo"> | string
     vehiculoId?: IntWithAggregatesFilter<"Arriendo"> | number
     usuarioId?: IntWithAggregatesFilter<"Arriendo"> | number
+    valorArriendo?: IntWithAggregatesFilter<"Arriendo"> | number
   }
 
   export type PerfilCreateInput = {
@@ -7046,6 +7067,7 @@ export namespace Prisma {
     fotosRecepcion?: string | null
     clienteRut: string
     clienteNombre: string
+    valorArriendo: number
     vehiculo: VehiculoCreateNestedOneWithoutArriendosInput
     usuario: UsuarioCreateNestedOneWithoutArriendosInput
   }
@@ -7062,6 +7084,7 @@ export namespace Prisma {
     clienteNombre: string
     vehiculoId: number
     usuarioId: number
+    valorArriendo: number
   }
 
   export type ArriendoUpdateInput = {
@@ -7073,6 +7096,7 @@ export namespace Prisma {
     fotosRecepcion?: NullableStringFieldUpdateOperationsInput | string | null
     clienteRut?: StringFieldUpdateOperationsInput | string
     clienteNombre?: StringFieldUpdateOperationsInput | string
+    valorArriendo?: IntFieldUpdateOperationsInput | number
     vehiculo?: VehiculoUpdateOneRequiredWithoutArriendosNestedInput
     usuario?: UsuarioUpdateOneRequiredWithoutArriendosNestedInput
   }
@@ -7089,6 +7113,7 @@ export namespace Prisma {
     clienteNombre?: StringFieldUpdateOperationsInput | string
     vehiculoId?: IntFieldUpdateOperationsInput | number
     usuarioId?: IntFieldUpdateOperationsInput | number
+    valorArriendo?: IntFieldUpdateOperationsInput | number
   }
 
   export type ArriendoCreateManyInput = {
@@ -7103,6 +7128,7 @@ export namespace Prisma {
     clienteNombre: string
     vehiculoId: number
     usuarioId: number
+    valorArriendo: number
   }
 
   export type ArriendoUpdateManyMutationInput = {
@@ -7114,6 +7140,7 @@ export namespace Prisma {
     fotosRecepcion?: NullableStringFieldUpdateOperationsInput | string | null
     clienteRut?: StringFieldUpdateOperationsInput | string
     clienteNombre?: StringFieldUpdateOperationsInput | string
+    valorArriendo?: IntFieldUpdateOperationsInput | number
   }
 
   export type ArriendoUncheckedUpdateManyInput = {
@@ -7128,6 +7155,7 @@ export namespace Prisma {
     clienteNombre?: StringFieldUpdateOperationsInput | string
     vehiculoId?: IntFieldUpdateOperationsInput | number
     usuarioId?: IntFieldUpdateOperationsInput | number
+    valorArriendo?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -7454,12 +7482,14 @@ export namespace Prisma {
     clienteNombre?: SortOrder
     vehiculoId?: SortOrder
     usuarioId?: SortOrder
+    valorArriendo?: SortOrder
   }
 
   export type ArriendoAvgOrderByAggregateInput = {
     id?: SortOrder
     vehiculoId?: SortOrder
     usuarioId?: SortOrder
+    valorArriendo?: SortOrder
   }
 
   export type ArriendoMaxOrderByAggregateInput = {
@@ -7474,6 +7504,7 @@ export namespace Prisma {
     clienteNombre?: SortOrder
     vehiculoId?: SortOrder
     usuarioId?: SortOrder
+    valorArriendo?: SortOrder
   }
 
   export type ArriendoMinOrderByAggregateInput = {
@@ -7488,12 +7519,14 @@ export namespace Prisma {
     clienteNombre?: SortOrder
     vehiculoId?: SortOrder
     usuarioId?: SortOrder
+    valorArriendo?: SortOrder
   }
 
   export type ArriendoSumOrderByAggregateInput = {
     id?: SortOrder
     vehiculoId?: SortOrder
     usuarioId?: SortOrder
+    valorArriendo?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8030,6 +8063,7 @@ export namespace Prisma {
     fotosRecepcion?: string | null
     clienteRut: string
     clienteNombre: string
+    valorArriendo: number
     vehiculo: VehiculoCreateNestedOneWithoutArriendosInput
   }
 
@@ -8044,6 +8078,7 @@ export namespace Prisma {
     clienteRut: string
     clienteNombre: string
     vehiculoId: number
+    valorArriendo: number
   }
 
   export type ArriendoCreateOrConnectWithoutUsuarioInput = {
@@ -8107,6 +8142,7 @@ export namespace Prisma {
     clienteNombre?: StringFilter<"Arriendo"> | string
     vehiculoId?: IntFilter<"Arriendo"> | number
     usuarioId?: IntFilter<"Arriendo"> | number
+    valorArriendo?: IntFilter<"Arriendo"> | number
   }
 
   export type VehiculoCreateWithoutTipoInput = {
@@ -8195,6 +8231,7 @@ export namespace Prisma {
     fotosRecepcion?: string | null
     clienteRut: string
     clienteNombre: string
+    valorArriendo: number
     usuario: UsuarioCreateNestedOneWithoutArriendosInput
   }
 
@@ -8209,6 +8246,7 @@ export namespace Prisma {
     clienteRut: string
     clienteNombre: string
     usuarioId: number
+    valorArriendo: number
   }
 
   export type ArriendoCreateOrConnectWithoutVehiculoInput = {
@@ -8403,6 +8441,7 @@ export namespace Prisma {
     clienteRut: string
     clienteNombre: string
     vehiculoId: number
+    valorArriendo: number
   }
 
   export type ArriendoUpdateWithoutUsuarioInput = {
@@ -8414,6 +8453,7 @@ export namespace Prisma {
     fotosRecepcion?: NullableStringFieldUpdateOperationsInput | string | null
     clienteRut?: StringFieldUpdateOperationsInput | string
     clienteNombre?: StringFieldUpdateOperationsInput | string
+    valorArriendo?: IntFieldUpdateOperationsInput | number
     vehiculo?: VehiculoUpdateOneRequiredWithoutArriendosNestedInput
   }
 
@@ -8428,6 +8468,7 @@ export namespace Prisma {
     clienteRut?: StringFieldUpdateOperationsInput | string
     clienteNombre?: StringFieldUpdateOperationsInput | string
     vehiculoId?: IntFieldUpdateOperationsInput | number
+    valorArriendo?: IntFieldUpdateOperationsInput | number
   }
 
   export type ArriendoUncheckedUpdateManyWithoutUsuarioInput = {
@@ -8441,6 +8482,7 @@ export namespace Prisma {
     clienteRut?: StringFieldUpdateOperationsInput | string
     clienteNombre?: StringFieldUpdateOperationsInput | string
     vehiculoId?: IntFieldUpdateOperationsInput | number
+    valorArriendo?: IntFieldUpdateOperationsInput | number
   }
 
   export type VehiculoCreateManyTipoInput = {
@@ -8495,6 +8537,7 @@ export namespace Prisma {
     clienteRut: string
     clienteNombre: string
     usuarioId: number
+    valorArriendo: number
   }
 
   export type ArriendoUpdateWithoutVehiculoInput = {
@@ -8506,6 +8549,7 @@ export namespace Prisma {
     fotosRecepcion?: NullableStringFieldUpdateOperationsInput | string | null
     clienteRut?: StringFieldUpdateOperationsInput | string
     clienteNombre?: StringFieldUpdateOperationsInput | string
+    valorArriendo?: IntFieldUpdateOperationsInput | number
     usuario?: UsuarioUpdateOneRequiredWithoutArriendosNestedInput
   }
 
@@ -8520,6 +8564,7 @@ export namespace Prisma {
     clienteRut?: StringFieldUpdateOperationsInput | string
     clienteNombre?: StringFieldUpdateOperationsInput | string
     usuarioId?: IntFieldUpdateOperationsInput | number
+    valorArriendo?: IntFieldUpdateOperationsInput | number
   }
 
   export type ArriendoUncheckedUpdateManyWithoutVehiculoInput = {
@@ -8533,6 +8578,7 @@ export namespace Prisma {
     clienteRut?: StringFieldUpdateOperationsInput | string
     clienteNombre?: StringFieldUpdateOperationsInput | string
     usuarioId?: IntFieldUpdateOperationsInput | number
+    valorArriendo?: IntFieldUpdateOperationsInput | number
   }
 
 
