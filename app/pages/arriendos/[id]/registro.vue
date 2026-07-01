@@ -63,7 +63,7 @@ async function guardarRegistro() {
   <div class="container mx-auto p-4 max-w-lg mt-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-2xl font-bold text-white">Registro Fotográfico</h1>
-      <NuxtLink to="/arriendos" class="text-blue-400 hover:text-blue-300 underline text-sm">
+      <NuxtLink to="/arriendos/base" class="text-blue-400 hover:text-blue-300 underline text-sm">
         Volver
       </NuxtLink>
     </div>
