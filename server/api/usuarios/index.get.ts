@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     const usuarios = await prisma.usuario.findMany({
         select: {
             id: true,
-            nombre: true,
+            rut: true,
             email: true,
             perfil: {
                 select: { nombre: true }
