@@ -1,6 +1,6 @@
 import { prisma } from "../../utils/prisma";
-import fs from 'node:fs'; //it lets you interact with the file system
-import path from 'node:path'; // it handles directory paths automatically
+import fs from 'node:fs';
+import path from 'node:path';
 
 export default defineEventHandler(async (event) => {
     const session = await requireUserSession(event);
@@ -15,7 +15,6 @@ export default defineEventHandler(async (event) => {
         throw createError({ statusCode: 400, message: "No se enviaron datos." });
     }
 
-    //variables para almacenar datos
     let patente = '';
     let marca = '';
     let modelo = '';
@@ -40,16 +39,23 @@ export default defineEventHandler(async (event) => {
             tipoId = Number(field.data.toString());
         }
 
-        // Guarda la foto en la carpeta 'public/uploads' y genera un nombre único para el archivo
         if (field.name === 'fotoUrl' && field.filename) {
             try {
-                nombreArchivo = `${Date.now()}_${field.filename}`;
-                const rutaDestino = path.join(process.cwd(), 'app', 'public', 'uploads', nombreArchivo);
+                const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+                fs.mkdirSync(uploadsDir, { recursive: true });
+
+                const extension = path.extname(field.filename) || '.jpg';
+                nombreArchivo = `${Date.now()}${extension}`;
+                const rutaDestino = path.join(uploadsDir, nombreArchivo);
                 fs.writeFileSync(rutaDestino, field.data);
             } catch (error) {
                 throw createError({ statusCode: 500, message: "Error al guardar la foto" });
             }
         }
+    }
+
+    if (!nombreArchivo) {
+        throw createError({ statusCode: 400, message: "Debes adjuntar una foto del vehículo" });
     }
 
     const nuevoVehiculo = await prisma.vehiculo.create({
@@ -58,8 +64,8 @@ export default defineEventHandler(async (event) => {
             marca,
             modelo,
             anio,
-            estado: 'disponible', 
-            fotoUrl: '/uploads/' + nombreArchivo,
+            estado: 'disponible',
+            fotoUrl: `/uploads/${nombreArchivo}`,
             tipoId
         }
     });
