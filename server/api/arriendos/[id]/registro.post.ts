@@ -22,7 +22,8 @@ export default defineEventHandler(async (event) => {
         if (field.name === 'fotos' && field.filename) {
             try {
                 nombreArchivo = `arriendo-${id}-${Date.now()}-${field.filename}`;
-                const rutaDestino = path.join(process.cwd(), 'app', 'public', 'uploads', nombreArchivo);
+                const rutaDestino = path.join(process.cwd(), 'public', 'uploads', nombreArchivo);
+                fs.mkdirSync(path.dirname(rutaDestino), { recursive: true });
                 fs.writeFileSync(rutaDestino, field.data);
             } catch (error) {
                 throw createError({ statusCode: 500, message: "Error al guardar la fotografía" });

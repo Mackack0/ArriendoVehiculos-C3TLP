@@ -23,10 +23,16 @@ export default defineEventHandler(async (event) => {
 
   if (vehiculo.fotoUrl) {
     const nombreArchivo = vehiculo.fotoUrl.replace('/uploads/', '');
-    const rutaDestino = path.join(process.cwd(), 'app', 'public', 'uploads', nombreArchivo);
-    
-    if (fs.existsSync(rutaDestino)) {
-      fs.unlinkSync(rutaDestino);
+    const rutasPosibles = [
+      path.join(process.cwd(), 'public', 'uploads', nombreArchivo),
+      path.join(process.cwd(), 'app', 'public', 'uploads', nombreArchivo)
+    ];
+
+    for (const rutaDestino of rutasPosibles) {
+      if (fs.existsSync(rutaDestino)) {
+        fs.unlinkSync(rutaDestino);
+        break;
+      }
     }
   }
 
